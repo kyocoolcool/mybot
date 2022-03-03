@@ -36,11 +36,11 @@ public class MessageController {
         String replyToken = messageEvent.getReplyToken();
         String message = messageEvent.getMessage().getText();
         String groupId = messageEvent.getSource().getSenderId();
-        /* Get user's display name */
-        String displayName = lineMessagingClient
-                .getProfile(lineId)
-                .get()
-                .getDisplayName();
+//        /* Get user's display name */
+//        String displayName = lineMessagingClient
+//                .getProfile(lineId)
+//                .get()
+//                .getDisplayName();
         Path path = Path.of("./" + groupId);
         boolean exists = Files.exists(path);
         System.out.println(exists);
@@ -48,7 +48,7 @@ public class MessageController {
             Path file = Files.createFile(path);
             System.out.println(file);
             ArrayList<String> strings = new ArrayList<>();
-            strings.add("1 克洛林 0000");
+            strings.add("1 古6 0000");
             strings.add("2 奈克 0000");
             strings.add("3 烏勒 0000");
             strings.add("4 四色 0000");
@@ -61,13 +61,13 @@ public class MessageController {
         }
         List<String> result = Files.readAllLines(path);
         StringBuilder stringBuilder = new StringBuilder();
-        if (s[0].equals("boss")) {
+        if (s[0].equalsIgnoreCase("boss")) {
             result.forEach(x -> stringBuilder.append(x + "\n"));
             //        TextMessage responseMessage = new TextMessage(answer);
             TextMessage responseMessage = new TextMessage(stringBuilder.toString());
             /* Sending the respone */
             lineMessagingClient.replyMessage(new ReplyMessage(replyToken, responseMessage));
-        } else if (s[0].equals("kill")) {
+        } else if (s[0].equalsIgnoreCase("kill") || s[0].equalsIgnoreCase("k")) {
             Integer hh = Integer.valueOf(s[2].substring(0, 2));
             Integer mm = Integer.valueOf(s[2].substring(2, 4));
             LocalTime bossTime = LocalTime.of(hh, mm);
@@ -77,7 +77,7 @@ public class MessageController {
 //            String format = formatter.format(localTime);
             System.out.println(format);
             switch (s[1]) {
-                case "克洛林":
+                case "古6":
                     result.set(0, "1 " + s[1] + " " + format);
                     break;
                 case "奈克":
