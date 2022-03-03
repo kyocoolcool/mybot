@@ -1,0 +1,28 @@
+plugins {
+    id 'org.springframework.boot' version '2.6.4'
+    id 'io.spring.dependency-management' version '1.0.11.RELEASE'
+    id 'java'
+}
+
+group = 'com.mybot'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '11'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    compileOnly "org.springframework.boot:spring-boot-devtools"
+    implementation 'com.linecorp.bot:line-bot-spring-boot:3.5.0'
+    implementation 'com.linecorp.bot:line-bot-servlet:3.5.0'
+    implementation 'com.linecorp.bot:line-bot-model:3.5.0'
+    implementation 'com.linecorp.bot:line-bot-parser:3.5.0'
+    implementation 'com.linecorp.bot:line-bot-api-client:3.5.0'
+}
+
+tasks.named('test') {
+    useJUnitPlatform()
+}
