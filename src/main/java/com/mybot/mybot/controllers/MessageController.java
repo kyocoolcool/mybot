@@ -48,13 +48,13 @@ public class MessageController {
             Path file = Files.createFile(path);
             System.out.println(file);
             ArrayList<String> strings = new ArrayList<>();
-            strings.add("1 古6 0726");
-            strings.add("2 奈克 0808");
-            strings.add("3 烏勒 0803");
-            strings.add("4 四色 0833");
-            strings.add("5 大黑 0857");
-            strings.add("6 螞蟻 0934");
-            strings.add("7 蛇女 0623");
+            strings.add("1 古6 0732");
+            strings.add("2 奈克 0812");
+            strings.add("3 烏勒 0817");
+            strings.add("4 四色 0848");
+            strings.add("5 大黑 0908");
+            strings.add("6 螞蟻 0943");
+            strings.add("7 蛇女 0618");
             StringBuilder stringBuilder3 = new StringBuilder();
             strings.forEach(x -> stringBuilder3.append(x + "\n"));
             Files.writeString(path, stringBuilder3.toString()); // UTF 8
