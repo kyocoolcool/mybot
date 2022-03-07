@@ -60,7 +60,7 @@ bosses:
 #      name: 死騎
 #      time: "03/07 23:59"
 #      type: LEGEND
-prod
+#prod
 line.bot.channel-token: vPO/poywDjEiLwvZWCsunl1nouGZ4PeXrmcfKb8MwfrbMcN1wHmZSM4/4KhWtSjN5I8neONZQZRu28CX0y1L9+tgQTUC3ZnUUGyxbhGL/X49IlJ4H/Js7djrQofbcrV3mi3W5LVAbBMkNMvxSlheSwdB04t89/1O/w1cDnyilFU=
 line.bot.channel-secret: 5cb04cd051d8f25838bef7486e264413
 line:
