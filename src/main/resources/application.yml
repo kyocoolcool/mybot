@@ -1,0 +1,68 @@
+##dev
+#line:
+#  bot:
+#    channel-token: vkdE8LQqaRcm11rsGjSRNYViRYWX9X9Akklpau8NZewYcghPZPnxFC/+g4ne2QTLc/qjSeaVsapmg5NpBHkXz0YBtLRRp4ZKgqWAn4CeDr8T2GiQdRC8aD9XV7lkjxVJj4CscYvhuQzWjwqK7+lMzwdB04t89/1O/w1cDnyilFU=
+#    channel-secret: a392b2d1f21e696c7723736b9fe6bd9b
+#    handler:
+#      path: /callback
+#server:
+#  port: 8082
+
+bosses:
+  bossMap:
+    1:
+      order: 1
+      name: 古六
+      time: "2022/03/07 19:52"
+      type: EPIC
+    2:
+      order: 2
+      name: 奈克
+      time: "2022/03/07 08:36"
+      type: EPIC
+    3:
+      order: 3
+      name: 烏勒
+      time: "2022/03/07 08:40"
+      type: EPIC
+    4:
+      order: 4
+      name: 四色
+      time: "2022/03/07 09:22"
+      type: EPIC
+    5:
+      order: 5
+      name: 大黑
+      time: "2022/03/07 09:26"
+      type: EPIC
+    6:
+      order: 6
+      name: 螞蟻
+      time: "2022/03/07 10:02"
+      type: EPIC
+    7:
+      order: 7
+      name: 蛇女
+      time: "2022/03/07 07:00"
+      type: EPIC
+#    8:
+#      order: 8
+#      name: 巨飛
+#      time: "03/07 19:40"
+#      type: LEGEND
+#    9:
+#      order: 9
+#      name: 克特
+#      time: "03/07 20:06"
+#      type: LEGEND
+#    10:
+#      order: 10
+#      name: 死騎
+#      time: "03/07 23:59"
+#      type: LEGEND
+prod
+line.bot.channel-token: vPO/poywDjEiLwvZWCsunl1nouGZ4PeXrmcfKb8MwfrbMcN1wHmZSM4/4KhWtSjN5I8neONZQZRu28CX0y1L9+tgQTUC3ZnUUGyxbhGL/X49IlJ4H/Js7djrQofbcrV3mi3W5LVAbBMkNMvxSlheSwdB04t89/1O/w1cDnyilFU=
+line.bot.channel-secret: 5cb04cd051d8f25838bef7486e264413
+line:
+  bot:
+    handler.path: /callback

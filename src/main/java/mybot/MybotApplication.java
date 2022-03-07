@@ -1,4 +1,4 @@
-package com.mybot.mybot;
+package mybot;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -6,6 +6,7 @@ import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
 
 @SpringBootApplication
+//@PropertySource("classpath:boss.yml")
 public class MybotApplication extends SpringBootServletInitializer {
 
     @Override
