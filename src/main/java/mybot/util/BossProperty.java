@@ -1,8 +1,8 @@
 package mybot.util;
 
-import com.mybot.mybot.Boss;
 import lombok.Getter;
 import lombok.Setter;
+import mybot.Boss;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.stereotype.Component;
 

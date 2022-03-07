@@ -21,6 +21,8 @@ dependencies {
     implementation 'com.linecorp.bot:line-bot-model:3.5.0'
     implementation 'com.linecorp.bot:line-bot-parser:3.5.0'
     implementation 'com.linecorp.bot:line-bot-api-client:3.5.0'
+    compileOnly group: 'org.projectlombok', name: 'lombok', version: '1.18.22'
+    annotationProcessor "org.springframework.boot:spring-boot-configuration-processor"
 }
 
 tasks.named('test') {

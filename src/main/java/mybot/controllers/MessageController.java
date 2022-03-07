@@ -8,9 +8,9 @@ import com.linecorp.bot.model.event.source.Source;
 import com.linecorp.bot.model.message.TextMessage;
 import com.linecorp.bot.spring.boot.annotation.EventMapping;
 import com.linecorp.bot.spring.boot.annotation.LineMessageHandler;
-import com.mybot.mybot.Boss;
-import com.mybot.mybot.util.BossProperty;
-import com.mybot.mybot.util.Master;
+import mybot.Boss;
+import mybot.util.BossProperty;
+import mybot.util.Master;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.io.IOException;
