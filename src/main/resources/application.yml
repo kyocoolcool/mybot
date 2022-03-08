@@ -7,43 +7,60 @@
 #      path: /callback
 #server:
 #  port: 8082
+#  ssl:
+#    key-store: classpath:key-cert-mousumi.p12
+#    key-store-type: PKCS12
+#    key-store-password: test123
+spring:
+  cloud:
+    gcp:
+      credentials:
+        location: classpath:key.json
+
+gcs-resource-test-bucket: fur-seal
+#prod
+line.bot.channel-token: vPO/poywDjEiLwvZWCsunl1nouGZ4PeXrmcfKb8MwfrbMcN1wHmZSM4/4KhWtSjN5I8neONZQZRu28CX0y1L9+tgQTUC3ZnUUGyxbhGL/X49IlJ4H/Js7djrQofbcrV3mi3W5LVAbBMkNMvxSlheSwdB04t89/1O/w1cDnyilFU=
+line.bot.channel-secret: 5cb04cd051d8f25838bef7486e264413
+line:
+  bot:
+    handler.path: /callback
 
 bosses:
   bossMap:
     1:
       order: 1
       name: 古六
-      time: "2022/03/07 19:52"
+      time: "2022/03/08 19:56"
       type: EPIC
     2:
       order: 2
       name: 奈克
-      time: "2022/03/07 08:36"
+      time: "2022/03/08 20:49"
       type: EPIC
     3:
       order: 3
       name: 烏勒
-      time: "2022/03/07 08:40"
+      time: "2022/03/08 20:53"
       type: EPIC
     4:
       order: 4
       name: 四色
-      time: "2022/03/07 09:22"
+      time: "2022/03/08 21:42"
       type: EPIC
     5:
       order: 5
       name: 大黑
-      time: "2022/03/07 09:26"
+      time: "2022/03/08 21:46"
       type: EPIC
     6:
       order: 6
       name: 螞蟻
-      time: "2022/03/07 10:02"
+      time: "2022/03/08 22:14"
       type: EPIC
     7:
       order: 7
       name: 蛇女
-      time: "2022/03/07 07:00"
+      time: "2022/03/08 05:30"
       type: EPIC
 #    8:
 #      order: 8
@@ -60,9 +77,5 @@ bosses:
 #      name: 死騎
 #      time: "03/07 23:59"
 #      type: LEGEND
-#prod
-line.bot.channel-token: vPO/poywDjEiLwvZWCsunl1nouGZ4PeXrmcfKb8MwfrbMcN1wHmZSM4/4KhWtSjN5I8neONZQZRu28CX0y1L9+tgQTUC3ZnUUGyxbhGL/X49IlJ4H/Js7djrQofbcrV3mi3W5LVAbBMkNMvxSlheSwdB04t89/1O/w1cDnyilFU=
-line.bot.channel-secret: 5cb04cd051d8f25838bef7486e264413
-line:
-  bot:
-    handler.path: /callback
+
+

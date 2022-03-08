@@ -23,6 +23,9 @@ dependencies {
     implementation 'com.linecorp.bot:line-bot-api-client:3.5.0'
     compileOnly group: 'org.projectlombok', name: 'lombok', version: '1.18.22'
     annotationProcessor "org.springframework.boot:spring-boot-configuration-processor"
+    // https://mvnrepository.com/artifact/org.springframework.cloud/spring-cloud-gcp-starter-storage
+    implementation group: 'org.springframework.cloud', name: 'spring-cloud-gcp-starter-storage', version: '1.2.8.RELEASE'
+
 }
 
 tasks.named('test') {

@@ -10,8 +10,11 @@ import com.linecorp.bot.spring.boot.annotation.EventMapping;
 import com.linecorp.bot.spring.boot.annotation.LineMessageHandler;
 import mybot.Boss;
 import mybot.util.BossProperty;
+import mybot.util.GCS;
 import mybot.util.Master;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.core.io.Resource;
 
 import java.io.IOException;
 import java.nio.file.Files;
@@ -34,6 +37,11 @@ public class MessageController {
     @Autowired
     BossProperty bossProperty;
 
+    //    @Value("gs://${gcs-resource-test-bucket}/test")
+//    private Resource gcsFile;
+    @Autowired
+    GCS gcs;
+
     @EventMapping
     public void handleTextEvent(MessageEvent<TextMessageContent> messageEvent) throws ExecutionException, InterruptedException, IOException {
         LocalDate now = LocalDate.now();
@@ -54,23 +62,29 @@ public class MessageController {
         Path path = Path.of("./" + groupId);
         boolean exists = Files.exists(path);
         if (!exists) {
-            Path file = Files.createFile(path);
-//            ArrayList<String> bossList = new ArrayList<>();
-//            StringBuilder stringBuilder = new StringBuilder();
-            bossMap.forEach((u, v) ->
-            {
-                try {
-                    Files.writeString(path, new StringBuilder().append(v.getOrder()).append(" ").append(v.getType()).append(" ").append(v.getName()).append(" ").append(v.getTime()).append("\n").toString(), StandardOpenOption.APPEND);
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            });
-//                    bossList.add(stringBuilder.append(v.getOrder()).append(" ").append(v.getType()).append(" ").append(v.getName()).append(v.getTime()).append("\n").toString()));
-//            Files.writeString(path, bossList.toString());
+            //download file from Google cloud storage
+            try {
+                gcs.downloadFile(groupId, path);
+            } catch (Exception e) {
+                System.out.println(e);
+            }
+
+            boolean noExists = Files.exists(path);
+            if (!noExists) {
+                //write file
+                Files.createFile(path);
+                bossMap.forEach((u, v) ->
+                {
+                    try {
+                        Files.writeString(path, new StringBuilder().append(v.getOrder()).append(" ").append(v.getType()).append(" ").append(v.getName()).append(" ").append(v.getTime()).append("\n").toString(), StandardOpenOption.APPEND);
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                });
+                gcs.createFile(groupId, path);
+            }
         }
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm");
-        ;
-        ;
         List<String> result = Files.readAllLines(path);
         Map<String, Boss> readBossMap = new HashMap<String, Boss>();
         result.forEach(details -> {
@@ -104,13 +118,6 @@ public class MessageController {
                     String bossDeadTime = s[2] + " " + s[3];
                     bossBirthTime = LocalDateTime.parse(bossDeadTime, formatter).plusHours(12);
                 }
-
-//            LocalTime bossTime = LocalTime.of(hh, mm);
-
-//                LocalTime localTime = bossDeadTime.plusHours(12);
-//            String format = localTime.toString().replace(":", "");
-//                String format = formatter.format(localTime);
-//                System.out.println(format);
                 Boss boss = readBossMap.get(String.valueOf(master.label));
                 boss.setLocalDateTime(bossBirthTime);
                 boss.setTime(bossBirthTime.format(formatter));
@@ -125,19 +132,12 @@ public class MessageController {
                         e.printStackTrace();
                     }
                 });
-//
-//                StringBuilder stringBuilder2 = new StringBuilder();
-//                result.forEach(x -> stringBuilder2.append(x + "\n"));
-//                Files.writeString(path, stringBuilder2.toString()); // UTF 8
+                gcs.createFile(groupId, path);
                 //        TextMessage responseMessage = new TextMessage(answer);
                 TextMessage responseMessage = new TextMessage(s[1] + " 下一次更新時間:" + bossBirthTime.format(formatter));
                 /* Sending the respone */
                 lineMessagingClient.replyMessage(new ReplyMessage(replyToken, responseMessage));
-
             }
         }
     }
-
-    /* Building the response */
-//        String answer = String.format("Hello, %s! Your message is %s", displayName, message);
 }
