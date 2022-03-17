@@ -17,7 +17,7 @@ spring:
       credentials:
         location: classpath:key.json
 
-gcs-resource-test-bucket: fur-seal
+gcs-resource-test-bucket: fur-seal2
 #prod
 line.bot.channel-token: vPO/poywDjEiLwvZWCsunl1nouGZ4PeXrmcfKb8MwfrbMcN1wHmZSM4/4KhWtSjN5I8neONZQZRu28CX0y1L9+tgQTUC3ZnUUGyxbhGL/X49IlJ4H/Js7djrQofbcrV3mi3W5LVAbBMkNMvxSlheSwdB04t89/1O/w1cDnyilFU=
 line.bot.channel-secret: 5cb04cd051d8f25838bef7486e264413
@@ -30,37 +30,37 @@ bosses:
     1:
       order: 1
       name: 古六
-      time: "2022/03/08 19:56"
+      time: "2022/03/18 17:33"
       type: EPIC
     2:
       order: 2
       name: 奈克
-      time: "2022/03/08 20:49"
+      time: "2022/03/18 18:14"
       type: EPIC
     3:
       order: 3
       name: 烏勒
-      time: "2022/03/08 20:53"
+      time: "2022/03/18 18:07"
       type: EPIC
     4:
       order: 4
       name: 四色
-      time: "2022/03/08 21:42"
+      time: "2022/03/18 06:36"
       type: EPIC
     5:
       order: 5
       name: 大黑
-      time: "2022/03/08 21:46"
+      time: "2022/03/18 06:53"
       type: EPIC
     6:
       order: 6
       name: 螞蟻
-      time: "2022/03/08 22:14"
+      time: "2022/03/18 07:25"
       type: EPIC
     7:
       order: 7
       name: 蛇女
-      time: "2022/03/08 05:30"
+      time: "2022/03/18 07:56"
       type: EPIC
 #    8:
 #      order: 8

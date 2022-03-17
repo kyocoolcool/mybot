@@ -33,19 +33,19 @@ public class GCS {
 
 //        storage.createFrom(blobInfo, Paths.get(fileName));
 //        Blob blob = storage.get("fur-seal", fileName);
-        BlobId blobId  =  BlobId.of("fur-seal", fileName);
+        BlobId blobId  =  BlobId.of("fur-seal2", fileName);
         BlobInfo blobInfo = BlobInfo.newBuilder(blobId).setContentEncoding("UTF-8").setContentType("text/plain; charset=utf-8").build();
         storage.createFrom(blobInfo, path);
     }
 
     public void downloadFile(String fileName, Path path) {
-        Blob blob = storage.get("fur-seal", fileName);
+        Blob blob = storage.get("fur-seal2", fileName);
         blob.downloadTo(path);
     }
 
     public void deleteFile(String fileName) {
 //        Bucket bucket = storage.create(BucketInfo.of("fur-seal"));
-        BlobId blobId = BlobId.of("fur-seal", fileName);
+        BlobId blobId = BlobId.of("fur-seal2", fileName);
         boolean deleted = storage.delete(blobId);
     }
 }
