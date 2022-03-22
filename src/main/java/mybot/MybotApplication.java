@@ -7,11 +7,9 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
+import org.springframework.core.io.ClassPathResource;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
+import java.io.*;
 import java.util.Objects;
 
 @SpringBootApplication
@@ -19,8 +17,10 @@ import java.util.Objects;
 public class MybotApplication extends SpringBootServletInitializer {
 
     public static void main(String[] args) throws IOException {
-        ClassLoader classLoader = MybotApplication.class.getClassLoader();
-        File file = new File(Objects.requireNonNull(classLoader.getResource("serviceAccount.json")).getFile());
+//        ClassLoader classLoader = MybotApplication.class.getClassLoader();
+        ClassPathResource classPathResource = new ClassPathResource("serviceAccount.json");
+//        File file = new File(Objects.requireNonNull(classLoader.getResource("serviceAccount.json")).getFile());
+        File file = classPathResource.getFile();
         FileInputStream serviceAccount = new FileInputStream(file.getAbsolutePath());
         FirebaseOptions options = new FirebaseOptions.Builder()
                 .setCredentials(GoogleCredentials.fromStream(serviceAccount))
