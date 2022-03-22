@@ -20,8 +20,8 @@ public class MybotApplication extends SpringBootServletInitializer {
 //        ClassLoader classLoader = MybotApplication.class.getClassLoader();
         ClassPathResource classPathResource = new ClassPathResource("serviceAccount.json");
 //        File file = new File(Objects.requireNonNull(classLoader.getResource("serviceAccount.json")).getFile());
-        File file = classPathResource.getFile();
-        FileInputStream serviceAccount = new FileInputStream(file.getAbsolutePath());
+        InputStream serviceAccount = classPathResource.getInputStream();
+//        FileInputStream serviceAccount = new FileInputStream(file.getAbsolutePath());
         FirebaseOptions options = new FirebaseOptions.Builder()
                 .setCredentials(GoogleCredentials.fromStream(serviceAccount))
                 .setDatabaseUrl("https://furseal-f1362-default-rtdb.asia-southeast1.firebasedatabase.app")
