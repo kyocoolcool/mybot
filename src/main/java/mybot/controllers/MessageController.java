@@ -37,70 +37,32 @@ public class MessageController {
     @Autowired
     BossProperty bossProperty;
 
-    //    @Value("gs://${gcs-resource-test-bucket}/test")
+    public BossService bossService;
+
+    public MessageController(BossService bossService) {
+        this.bossService = bossService;
+    }
+
+
+        //    @Value("gs://${gcs-resource-test-bucket}/test")
 //    private Resource gcsFile;
-    @Autowired
-    GCS gcs;
+//    @Autowired
+//    GCS gcs;
 
     @EventMapping
     public void handleTextEvent(MessageEvent<TextMessageContent> messageEvent) throws ExecutionException, InterruptedException, IOException {
         LocalDate now = LocalDate.now();
-        Map<Integer, Boss> bossMap = bossProperty.getBossMap();
         String[] s = messageEvent.getMessage().getText().split(" ");
-
-        /* Retrieve information from the message */
         Source source = messageEvent.getSource();
-        String lineId = source.getUserId();
         String replyToken = messageEvent.getReplyToken();
-        String message = messageEvent.getMessage().getText();
         String groupId = messageEvent.getSource().getSenderId();
-//        /* Get user's display name */
-//        String displayName = lineMessagingClient
-//                .getProfile(lineId)
-//                .get()
-//                .getDisplayName();
-        Path path = Path.of("./" + groupId);
-        boolean exists = Files.exists(path);
-        if (!exists) {
-            //download file from Google cloud storage
-            try {
-                gcs.downloadFile(groupId, path);
-            } catch (Exception e) {
-                System.out.println(e);
-            }
 
-            boolean noExists = Files.exists(path);
-            if (!noExists) {
-                //write file
-                Files.createFile(path);
-                bossMap.forEach((u, v) ->
-                {
-                    try {
-                        Files.writeString(path, new StringBuilder().append(v.getOrder()).append(" ").append(v.getType()).append(" ").append(v.getName()).append(" ").append(v.getTime()).append("\n").toString(), StandardOpenOption.APPEND);
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-                });
-                gcs.createFile(groupId, path);
-            }
-        }
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm");
-        List<String> result = Files.readAllLines(path);
-        Map<String, Boss> readBossMap = new HashMap<String, Boss>();
-        result.forEach(details -> {
-            String[] detail = details.split(" ");
-            readBossMap.put(detail[0], new Boss(Integer.valueOf(detail[0]), detail[1], detail[2], detail[3] + " " + detail[4], LocalDateTime.parse(detail[3] + " " + detail[4], formatter)));
-        });
-
-        LinkedHashMap<String, Boss> collect = readBossMap.entrySet().stream()
-                .sorted((x, y) -> x.getValue().getLocalDateTime().compareTo(y.getValue().getLocalDateTime())).collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue,
-                        (e1, e2) -> e1, LinkedHashMap::new));
-
 
         StringBuilder responseStringBuilder = new StringBuilder();
-
+        List<mybot.controllers.Boss> allBoss = bossService.getAllBoss();
         if (s[0].equalsIgnoreCase("boss")) {
-            collect.forEach((u, v) -> responseStringBuilder.append(v.getName()).append(" ").append(v.getTime()).append("\n"));
+            allBoss.forEach((u) -> responseStringBuilder.append(u.getName()).append(" ").append(u.getTime()).append("\n"));
             //TextMessage responseMessage = new TextMessage(answer);
             TextMessage responseMessage = new TextMessage(responseStringBuilder.toString());
             /* Sending the respone */
@@ -118,21 +80,9 @@ public class MessageController {
                     String bossDeadTime = s[2] + " " + s[3];
                     bossBirthTime = LocalDateTime.parse(bossDeadTime, formatter).plusHours(12);
                 }
-                Boss boss = readBossMap.get(String.valueOf(master.label));
-                boss.setLocalDateTime(bossBirthTime);
+                mybot.controllers.Boss boss = bossService.getBoss(String.valueOf(master.label));
                 boss.setTime(bossBirthTime.format(formatter));
-                readBossMap.put(String.valueOf(master.label), boss);
-                Files.deleteIfExists(path);
-                Files.createFile(path);
-                readBossMap.forEach((u, v) ->
-                {
-                    try {
-                        Files.writeString(path, new StringBuilder().append(v.getOrder()).append(" ").append(v.getType()).append(" ").append(v.getName()).append(" ").append(v.getTime()).append("\n").toString(), StandardOpenOption.APPEND);
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-                });
-                gcs.createFile(groupId, path);
+                bossService.updateBoss(boss);
                 //        TextMessage responseMessage = new TextMessage(answer);
                 TextMessage responseMessage = new TextMessage(s[1] + " 下一次更新時間:" + bossBirthTime.format(formatter));
                 /* Sending the respone */

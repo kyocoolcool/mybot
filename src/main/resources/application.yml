@@ -11,13 +11,7 @@
 #    key-store: classpath:key-cert-mousumi.p12
 #    key-store-type: PKCS12
 #    key-store-password: test123
-spring:
-  cloud:
-    gcp:
-      credentials:
-        location: classpath:key.json
 
-gcs-resource-test-bucket: fur-seal2
 #prod
 line.bot.channel-token: vPO/poywDjEiLwvZWCsunl1nouGZ4PeXrmcfKb8MwfrbMcN1wHmZSM4/4KhWtSjN5I8neONZQZRu28CX0y1L9+tgQTUC3ZnUUGyxbhGL/X49IlJ4H/Js7djrQofbcrV3mi3W5LVAbBMkNMvxSlheSwdB04t89/1O/w1cDnyilFU=
 line.bot.channel-secret: 5cb04cd051d8f25838bef7486e264413
@@ -30,37 +24,37 @@ bosses:
     1:
       order: 1
       name: 古六
-      time: "2022/03/18 17:33"
+      time: "2022/01/01 00:00"
       type: EPIC
     2:
       order: 2
       name: 奈克
-      time: "2022/03/18 18:14"
+      time: "2022/01/01 00:00"
       type: EPIC
     3:
       order: 3
       name: 烏勒
-      time: "2022/03/18 18:07"
+      time: "2022/03/18 00:00"
       type: EPIC
     4:
       order: 4
       name: 四色
-      time: "2022/03/18 06:36"
+      time: "2022/03/18 00:00"
       type: EPIC
     5:
       order: 5
       name: 大黑
-      time: "2022/03/18 06:53"
+      time: "2022/03/18 00:00"
       type: EPIC
     6:
       order: 6
       name: 螞蟻
-      time: "2022/03/18 07:25"
+      time: "2022/03/18 00:00"
       type: EPIC
     7:
       order: 7
       name: 蛇女
-      time: "2022/03/18 07:56"
+      time: "2022/03/18 00:00"
       type: EPIC
 #    8:
 #      order: 8

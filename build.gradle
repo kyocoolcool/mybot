@@ -23,8 +23,12 @@ dependencies {
     implementation 'com.linecorp.bot:line-bot-api-client:3.5.0'
     compileOnly group: 'org.projectlombok', name: 'lombok', version: '1.18.22'
     annotationProcessor "org.springframework.boot:spring-boot-configuration-processor"
-    // https://mvnrepository.com/artifact/org.springframework.cloud/spring-cloud-gcp-starter-storage
-    implementation group: 'org.springframework.cloud', name: 'spring-cloud-gcp-starter-storage', version: '1.2.8.RELEASE'
+    implementation 'com.google.api-client:google-api-client:1.33.0'
+    implementation 'com.google.oauth-client:google-oauth-client-jetty:1.32.1'
+    implementation 'com.google.apis:google-api-services-drive:v3-rev20211107-1.32.1'
+    implementation 'com.google.auth:google-auth-library-oauth2-http:0.22.2'
+    implementation group: 'com.google.firebase', name: 'firebase-admin', version: '8.1.0'
+
 
 }
 
