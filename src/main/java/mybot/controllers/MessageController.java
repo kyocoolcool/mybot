@@ -8,7 +8,6 @@ import com.linecorp.bot.model.event.source.Source;
 import com.linecorp.bot.model.message.TextMessage;
 import com.linecorp.bot.spring.boot.annotation.EventMapping;
 import com.linecorp.bot.spring.boot.annotation.LineMessageHandler;
-import mybot.Boss;
 import mybot.util.BossProperty;
 import mybot.util.GCS;
 import mybot.util.Master;
@@ -62,7 +61,10 @@ public class MessageController {
         StringBuilder responseStringBuilder = new StringBuilder();
         List<mybot.controllers.Boss> allBoss = bossService.getAllBoss();
         if (s[0].equalsIgnoreCase("boss")) {
-            allBoss.forEach((u) -> responseStringBuilder.append(u.getName()).append(" ").append(u.getTime()).append("\n"));
+            ArrayList<Boss> collect = allBoss.stream().sorted(Comparator.comparing((t) -> {
+                return t.getTime();
+            })).collect(Collectors.toCollection(ArrayList::new));
+            collect.forEach((u) -> responseStringBuilder.append(u.getName()).append(" ").append(u.getTime()).append("\n"));
             //TextMessage responseMessage = new TextMessage(answer);
             TextMessage responseMessage = new TextMessage(responseStringBuilder.toString());
             /* Sending the respone */
