@@ -18,11 +18,6 @@ import java.util.Objects;
 //@PropertySource("classpath:boss.yml")
 public class MybotApplication extends SpringBootServletInitializer {
 
-    @Override
-    protected SpringApplicationBuilder configure(SpringApplicationBuilder builder) {
-        return builder.sources(MybotApplication.class);
-    }
-
     public static void main(String[] args) throws IOException {
         ClassLoader classLoader = MybotApplication.class.getClassLoader();
         File file = new File(Objects.requireNonNull(classLoader.getResource("serviceAccount.json")).getFile());
@@ -31,8 +26,12 @@ public class MybotApplication extends SpringBootServletInitializer {
                 .setCredentials(GoogleCredentials.fromStream(serviceAccount))
                 .setDatabaseUrl("https://furseal-f1362-default-rtdb.asia-southeast1.firebasedatabase.app")
                 .build();
+        if (!(FirebaseApp.getApps().size() >0)) {
+            FirebaseApp.initializeApp(options);
+        }else {
+            FirebaseApp.getApps();
+        }
 
-        FirebaseApp.initializeApp(options);
         SpringApplication.run(MybotApplication.class, args);
     }
 

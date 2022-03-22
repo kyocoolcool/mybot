@@ -12,7 +12,7 @@ import org.springframework.stereotype.Component;
 import java.io.IOException;
 import java.nio.file.Path;
 
-@Component
+//@Component
 public class GCS {
     @Value("gs://${gcs-resource-test-bucket}/test")
     private Resource gcsFile;
