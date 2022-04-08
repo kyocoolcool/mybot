@@ -21,6 +21,7 @@ import java.nio.file.Path;
 import java.nio.file.StandardOpenOption;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
 import java.util.concurrent.ExecutionException;
@@ -50,7 +51,7 @@ public class MessageController {
 
     @EventMapping
     public void handleTextEvent(MessageEvent<TextMessageContent> messageEvent) throws ExecutionException, InterruptedException, IOException {
-        LocalDate now = LocalDate.now();
+        LocalDate now = LocalDate.now(ZoneId.of("Asia/Taipei"));
         String[] s = messageEvent.getMessage().getText().split(" ");
         Source source = messageEvent.getSource();
         String replyToken = messageEvent.getReplyToken();

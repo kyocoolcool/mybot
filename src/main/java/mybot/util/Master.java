@@ -8,9 +8,11 @@ public enum Master {
     大黑(5),
     螞蟻(6),
     蛇女(7),
-    巨飛(8),
-    克特(9),
-    死騎(10);
+    巨人(8),
+    巨飛(9),
+    克特(10),
+    死騎(11);
+
     public final Integer label;
 
     private Master(Integer label) {
