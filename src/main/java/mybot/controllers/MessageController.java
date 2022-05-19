@@ -84,6 +84,11 @@ public class MessageController {
                     bossBirthTime = LocalDateTime.parse(bossDeadTime, formatter).plusHours(12);
                 }
                 mybot.controllers.Boss boss = bossService.getBoss(String.valueOf(master.label));
+                //NC改到古六時間
+                if (boss.getBossId().equals("1")) {
+                    bossBirthTime =bossBirthTime.plusHours(2);
+                    bossBirthTime =bossBirthTime.plusMinutes(48);
+                }
                 boss.setTime(bossBirthTime.format(formatter));
                 bossService.updateBoss(boss);
                 //        TextMessage responseMessage = new TextMessage(answer);
